@@ -1,0 +1,9 @@
+{% if attributes_list %}
+    <ul>
+    {% for attributes in attributes_list %}
+        <li><a href="/characters/{{ attributes.id }}/">{{ attributes }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No attributes are available.</p>
+{% endif %}

@@ -28,6 +28,9 @@ class Attributes(models.Model):
     intellect = models.IntegerField(default=1)
     presence = models.IntegerField(default=1)
 
+    def __str__(self):
+            return f"STR: {self.strength} | AGI: {self.agility} | VIG {self.vigor} | INT {self.intellect} | PRE {self.presence}"
+
 class Extras(models.Model):
     abilities = models.TextField()
     annotation = models.TextField()
@@ -45,9 +48,9 @@ class Character(models.Model):
     daily_money = models.IntegerField()
     # in the future, change the on delete cascade to something safer
     background = models.ForeignKey(Background, on_delete=models.CASCADE)
-    status = models.ForeignKey(Status, on_delete=models.CASCADE)
-    attributes = models.ForeignKey(Attributes, on_delete=models.CASCADE)
-    extras = models.ForeignKey(Extras, on_delete=models.CASCADE, null = True)
+    status = models.OneToOneField(Status, on_delete=models.CASCADE)
+    attributes = models.OneToOneField(Attributes, on_delete=models.CASCADE)
+    extras = models.OneToOneField(Extras, on_delete=models.CASCADE, null = True)
     # json fields, they're gonna have a their own validators
-    skills = models.JSONField(validators=[skill_validator])
-    items = models.JSONField(validators=[items_validator])
+    skills = models.JSONField(validators=[skill_validator], null = True)
+    items = models.JSONField(validators=[items_validator], null = True)
