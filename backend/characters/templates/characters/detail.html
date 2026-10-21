@@ -1,1 +1,15 @@
-{{ attribute }}
+<form method="post">
+{% csrf_token %}
+    <fieldset>
+        <legend><h1>Personagem {{character.name}}</h1></legend>
+        {% if error_message %}<p><strong> {{error_message}} </strong></p>{% endif %}
+        {% for name, value in attributes_list %} 
+            <input type="radio" name="choice" value="{{ name }}"
+            <li>{{name}}: {{value}}</li>
+            <br>
+        {% endfor %}
+    </fieldset>
+    <input type="submit" value="upgrade" formaction="{% url 'characters:upgrade' character.id %}">
+    <input type="submit" value="downgrade" formaction="{% url 'characters:downgrade' character.id %}">
+    
+</form>

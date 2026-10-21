@@ -1,9 +1,12 @@
-{% if attributes_list %}
+{% if characters_list %}
     <ul>
-    {% for attributes in attributes_list %}
-        <li><a href="/characters/{{ attributes.id }}/">{{ attributes }}</a></li>
+    {% for characters in characters_list %}
+        <li><a href="{% url 'characters:detail' characters.id %}"> Nome: {{characters.name}} | Nível: {{characters.level}}</a></li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No attributes are available.</p>
+    <p>No characters are available.</p>
 {% endif %}
+
+
+
