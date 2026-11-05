@@ -52,6 +52,14 @@ class Attributes(models.Model):
         self.intellect = random.randint(1, 10)
         self.presence = random.randint(1, 10)
 
+    def create(self, strength, agility, vigor, intellect, presence):
+        self.strength = strength
+        self.agility = agility
+        self.vigor = vigor
+        self.intellect = intellect
+        self.presence = presence
+
+
     def get_attributes(self):
         return {"strength": self.strength, "agility": self.agility, "vigor": self.vigor, 
                 "intellect": self.intellect, "presence": self.presence}
